@@ -1,0 +1,7 @@
+{
+    "name": "Zephyr DevContainer",
+
+    "image": "devcontainer-zephyr-dev:latest",
+    "runArgs": ["--name", "test_workspace_devcontainer"],
+    "postCreateCommand": "west update && west zephyr-export && pip install -r zephyr/scripts/requirements.txt"
+}

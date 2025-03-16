@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "settings.h": "c",
+        "gpio.h": "c",
+        "w1_sensor.h": "c",
+        "kernel.h": "c"
+    }
+}
