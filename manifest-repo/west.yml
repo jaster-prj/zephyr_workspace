@@ -9,10 +9,10 @@ manifest:
       remote: zephyrproject-rtos
       revision: v4.0.0
       import: true
-    - name: mcuboot
-      remote: zephyrproject-rtos
-      revision: 1b2fc096d9a683a7481b13749d01ca8fa78e7afd
-      path: bootloader/mcuboot
+    # - name: mcuboot
+    #   remote: zephyrproject-rtos
+    #   revision: 1b2fc096d9a683a7481b13749d01ca8fa78e7afd
+    #   path: bootloader/mcuboot
     - name: hc_sr04_zephyr_module
       remote: jaster-prj
       revision: 6ec02828bb7ad8a5562f9672e5192483270f3913
