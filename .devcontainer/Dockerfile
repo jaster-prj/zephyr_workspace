@@ -15,17 +15,18 @@ ENV PATH="/opt/venv/bin:$PATH"
 	
 RUN pip install west
 
-RUN cd /opt && wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.0/zephyr-sdk-0.17.0_linux-x86_64.tar.xz
-RUN	cd /opt && tar xvf zephyr-sdk-0.17.0_linux-x86_64.tar.xz
-RUN	cd /opt && rm zephyr-sdk-0.17.0_linux-x86_64.tar.xz \
-	&& cd zephyr-sdk-0.17.0 \
+RUN cd /opt && wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.4/zephyr-sdk-0.17.4_linux-x86_64.tar.xz
+RUN	cd /opt && tar xvf zephyr-sdk-0.17.4_linux-x86_64.tar.xz
+RUN	cd /opt && rm zephyr-sdk-0.17.4_linux-x86_64.tar.xz \
+	&& cd zephyr-sdk-0.17.4 \
 	&& ./setup.sh -h -t all -c
-	
-# RUN cp /opt/zephyr-sdk-0.17.0/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules /etc/udev/rules.d \
-#	&& udevadm control --reload
-
-# ENV GOPATH /go
-# ENV PATH $GOPATH/bin:$PATH
-# RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 1777 "$GOPATH"
 
 WORKDIR /workspace
+
+FROM dev AS workspace
+
+COPY . /workspace
+
+RUN west update && \
+    west zephyr-export && \
+    pip install -r zephyr/scripts/requirements.txt
