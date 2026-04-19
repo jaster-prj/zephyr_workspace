@@ -15,18 +15,20 @@ ENV PATH="/opt/venv/bin:$PATH"
 	
 RUN pip install west
 
-RUN cd /opt && wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.4/zephyr-sdk-0.17.4_linux-x86_64.tar.xz
-RUN	cd /opt && tar xvf zephyr-sdk-0.17.4_linux-x86_64.tar.xz
-RUN	cd /opt && rm zephyr-sdk-0.17.4_linux-x86_64.tar.xz \
-	&& cd zephyr-sdk-0.17.4 \
+RUN cd /opt && wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v1.0.1/zephyr-sdk-1.0.1_linux-x86_64_gnu.tar.xz
+RUN	cd /opt && tar xvf zephyr-sdk-1.0.1_linux-x86_64_gnu.tar.xz
+RUN	cd /opt && rm zephyr-sdk-1.0.1_linux-x86_64_gnu.tar.xz \
+	&& cd zephyr-sdk-1.0.1 \
 	&& ./setup.sh -h -t all -c
 
 WORKDIR /workspace
 
 FROM dev AS workspace
 
-COPY . /workspace
+COPY --parents manifest-repo/ application/ .west/ .patch/ /workspace/
 
-RUN west update && \
-    west zephyr-export && \
-    pip install -r zephyr/scripts/requirements.txt
+FROM workspace AS zephyr
+
+RUN west update \
+    && west zephyr-export \
+    && pip install -r zephyr/scripts/requirements.txt
