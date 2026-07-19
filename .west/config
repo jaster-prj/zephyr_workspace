@@ -1,7 +1,6 @@
 [manifest]
 path = manifest-repo
 file = west.yml
-project-filter = +canopennode
 
 [zephyr]
 base = zephyr

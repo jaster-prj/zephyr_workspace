@@ -9,18 +9,14 @@ manifest:
       remote: zephyrproject-rtos
       revision: v4.4.1
       import: true
-    # - name: mcuboot
-    #   remote: zephyrproject-rtos
-    #   revision: 1b2fc096d9a683a7481b13749d01ca8fa78e7afd
-    #   path: bootloader/mcuboot
     - name: canopennodezephyr
       url: https://github.com/zephyrproject-rtos/CANopenNodeZephyr.git
       revision: main
       submodules:
         - path: CANopenNode
-    - name: hc_sr04_zephyr_module
+    - name: zephyr_boards
       remote: jaster-prj
-      revision: 6ec02828bb7ad8a5562f9672e5192483270f3913
-      path: modules/lib/sensor/hc-sr04
+      revision: main
+      path: modules/jaster_prj_boards
   self:
     path: manifest-repo
