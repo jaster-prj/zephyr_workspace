@@ -30,5 +30,5 @@ COPY --parents manifest-repo/ application/ .west/ .patch/ /workspace/
 FROM workspace AS zephyr
 
 RUN west update \
-    && west zephyr-export \
-    && pip install -r zephyr/scripts/requirements.txt
+    && pip install -r zephyr/scripts/requirements.txt \
+    && west zephyr-export
